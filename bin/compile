@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 # bin/compile build_path cache_path
+
 build="$1"
+echo "build=$build"
 cache="$2"
+echo "cache=$cache"
+
 set -e
 mkdir -p "${cache}/clamav-data"
 # Override the specified datadir so we retain changes via the cache.

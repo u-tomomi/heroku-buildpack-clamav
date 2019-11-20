@@ -18,16 +18,8 @@ It is a [heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for 
 # Aptfile
 # Install required apt packages
 
-clamav
-clamav-base
+clamav-daemon
 clamav-freshclam
-clamdscan
-cron
-libclamav9
-libllvm3.9
-libmspack0
-libtfm1
-logrotate
 ```
 
 6. (UNSURE) Create a worker that starts clamd
