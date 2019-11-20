@@ -10,6 +10,9 @@ set -e # Early exit of the shell if something goes wrong
 mkdir -p "${cache}/clamav-data"
 # Override the specified datadir so we retain changes via the cache.
 
+# Little test:
+mkdir -p /var/lib/clamav
+
 # mkdir ${build}/clamav
 # touch ${build}/clamav/freshclam.conf
 # echo "# /usr/local/etc/clamav/freshclam.conf" >> ${build}/clamav/freshclam.conf
