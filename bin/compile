@@ -1,24 +1,28 @@
 #!/usr/bin/env bash
 # bin/compile build_path cache_path
+#
 # See https://blog.heroku.com/hacking-buildpacks#compile for good documentation
+#
+# build - gives you a handle for the root directory of the app
+# cache - gives you a location to persist build artifacts between deployments
+#
+build="$1" # something like /tmp/build_<uuid>
+cache="$2" # /app/tmp/cache
 
-# pwd                 # something like /app/tmp/buildpacks/<a_very_long_uuid>
-build="$1"            # something like /tmp/build_<uuid>
-cache="$2"            # /app/tmp/cache
+# This writes a file in ~/ on heroku
+#touch "${build}/brads_test.txt"
+#echo "This is my test" > "${build}/brads_test.txt"
 
+set -e
+mkdir -p "${cache}/clamav-data"
 
-touch "${build}/brads_test.txt"
-echo "This is my test" > "${build}/brads_test.txt"
+mkdir -p "${build}/clamav"
+touch "${build}/clamav/freshclam.conf"
+echo "DatabaseMirror database.clamav.net" >> "${build}/clamav/freshclam.conf"
 
+# Override the specified datadir so we retain changes via the cache.
+freshclam --config-file="${build}/clamav/freshclam.conf" --datadir="${cache}/clamav-data/" --log=/dev/stdout
 
-# set -e
-# mkdir -p "${cache}/clamav-data"
-
-# mkdir -p "${build}/clamav"
-# touch "${build}/clamav/freshclam.conf"
-# echo "DatabaseMirror database.clamav.net" >> "${build}/clamav/freshclam.conf"
-
-# # Override the specified datadir so we retain changes via the cache.
-# freshclam --config-file="${build}/clamav/freshclam.conf" --datadir="${cache}/clamav-data/" --log=/dev/stdout
-# rm -rf "${build}/.clamav-data"
-# cp -rp "${cache}/clamav-data" "${build}/.clamav-data"
+# Replace the current virus database with the new one:
+rm -rf "${build}/.clamav-data"
+cp -rp "${cache}/clamav-data" "${build}/.clamav-data"
