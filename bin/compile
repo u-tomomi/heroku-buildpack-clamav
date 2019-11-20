@@ -9,14 +9,10 @@
 build="$1" # something like /tmp/build_<uuid>
 cache="$2" # /app/tmp/cache
 
-# This writes a file in ~/ on heroku
-#touch "${build}/brads_test.txt"
-#echo "This is my test" > "${build}/brads_test.txt"
-
 set -e
 mkdir -p "${cache}/clamav-data"
 
-mkdir -p "${build}/clamav"
+mkdir -p "${build}/clamav" # this will be created in the root directory of the app.
 touch "${build}/clamav/freshclam.conf"
 echo "DatabaseMirror database.clamav.net" >> "${build}/clamav/freshclam.conf"
 
