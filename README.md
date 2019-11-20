@@ -7,7 +7,7 @@ It is a [heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for 
 ## Usage
 
 1. Login to your Heroku app dashboard and click on `Settings`.  Then scroll to `Buildpacks`.
-2. At the bottom of the buildpack order, add the following two buildpacks, in the following order:
+2. At the bottom of the buildpack order (but before `heroku/ruby`), add the following two buildpacks, in the following order:
     + `https://github.com/heroku/heroku-buildpack-apt` (a buildpack offered by Heroku that adds support for apt-based dependencies)
     + `https://github.com/bradleymarques/heroku-buildpack-clamav` (this buildpack).
 3. Open your rails project.
