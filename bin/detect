@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-echo "========== Installing Clam Antivirus =========="
+echo "=== ClamAV ==="
 exit 0

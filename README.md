@@ -7,7 +7,7 @@ It is a [heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for 
 ## Usage
 
 1. Login to your Heroku app dashboard and click on `Settings`.  Then scroll to `Buildpacks`.
-2. At the bottom of the buildpack order (but before `heroku/ruby`), add the following two buildpacks, in the following order:
+2. At the top of the buildpack list, add the following two buildpacks, in the following order:
     + `https://github.com/heroku/heroku-buildpack-apt` (a buildpack offered by Heroku that adds support for apt-based dependencies)
     + `https://github.com/bradleymarques/heroku-buildpack-clamav` (this buildpack).
 3. Open your rails project.
@@ -18,8 +18,16 @@ It is a [heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for 
 # Aptfile
 # Install required apt packages
 
-clamav-daemon
+clamav
+clamav-base
 clamav-freshclam
+clamdscan
+cron
+libclamav9
+libllvm3.9
+libmspack0
+libtfm1
+logrotate
 ```
 
 6. (UNSURE) Create a worker that starts clamd
