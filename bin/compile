@@ -8,6 +8,7 @@ cache="$2"            # /app/tmp/cache
 set -e
 mkdir -p "${cache}/clamav-data"
 # Override the specified datadir so we retain changes via the cache.
-freshclam --config-file="${build}/clamav/freshclam.conf" --datadir="${cache}/clamav-data/" --log=/dev/stdout
+# freshclam --config-file="${build}/clamav/freshclam.conf" --datadir="${cache}/clamav-data/" --log=/dev/stdout
+freshclam --datadir="${cache}/clamav-data/" --log=/dev/stdout
 rm -rf "${build}/.clamav-data"
 cp -rp "${cache}/clamav-data" "${build}/.clamav-data"
