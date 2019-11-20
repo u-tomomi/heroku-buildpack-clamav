@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # bin/compile build_path cache_path
 
+pwd
 build="$1"
 echo "build=$build"
 cache="$2"
