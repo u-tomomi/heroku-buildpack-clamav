@@ -2,7 +2,7 @@
 
 ## What is this?
 
-It is a [heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for setting up a clamd daemon.
+It is a [heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for setting up a [Clam Antivirus](https://www.clamav.net/) daemon.
 
 ## Usage
 
