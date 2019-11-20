@@ -10,6 +10,7 @@ set -e
 mkdir -p "${cache}/clamav-data"
 # Override the specified datadir so we retain changes via the cache.
 
+mkdir ${build}/clamav
 touch ${build}/clamav/freshclam.conf
 
 echo "# /usr/local/etc/clamav/freshclam.conf" >> ${build}/clamav/freshclam.conf
