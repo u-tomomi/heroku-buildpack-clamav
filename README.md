@@ -18,6 +18,7 @@ It is a [heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for 
 # Aptfile
 # Install required apt packages
 
+clamav
 clamav-daemon
 clamav-freshclam
 ```
