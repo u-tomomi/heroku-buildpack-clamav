@@ -1,21 +1,19 @@
 #!/usr/bin/env bash
 # bin/compile build_path cache_path
 
-pwd
-build="$1"
-echo "build=$build"
-cache="$2"
-echo "cache=$cache"
+pwd                   # something like /app/tmp/buildpacks/<a_very_long_uuid>
+build="$1"            # something like /tmp/build_<uuid>
+cache="$2"            # /app/tmp/cache
 
-set -e
+set -e # Early exit of the shell if something goes wrong
+
 mkdir -p "${cache}/clamav-data"
 # Override the specified datadir so we retain changes via the cache.
 
-mkdir ${build}/clamav
-touch ${build}/clamav/freshclam.conf
-
-echo "# /usr/local/etc/clamav/freshclam.conf" >> ${build}/clamav/freshclam.conf
-echo "DatabaseMirror database.clamav.net" >> ${build}/clamav/freshclam.conf
+# mkdir ${build}/clamav
+# touch ${build}/clamav/freshclam.conf
+# echo "# /usr/local/etc/clamav/freshclam.conf" >> ${build}/clamav/freshclam.conf
+# echo "DatabaseMirror database.clamav.net" >> ${build}/clamav/freshclam.conf
 
 freshclam --config-file="${build}/clamav/freshclam.conf" --datadir="${cache}/clamav-data/" --log=/dev/stdout
 rm -rf "${build}/.clamav-data"
