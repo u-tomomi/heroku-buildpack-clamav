@@ -12,12 +12,8 @@ cache="$2" # /app/tmp/cache
 set -e
 mkdir -p "${cache}/clamav-data"
 
-mkdir -p "${build}/clamav" # this will be created in the root directory of the app.
-touch "${build}/clamav/freshclam.conf"
-echo "DatabaseMirror database.clamav.net" >> "${build}/clamav/freshclam.conf"
-
 # Override the specified datadir so we retain changes via the cache.
-freshclam --config-file="${build}/clamav/freshclam.conf" --datadir="${cache}/clamav-data/" --log=/dev/stdout
+freshclam --config-file="${build}/app/config/antivirus/freshclam.conf" --datadir="${cache}/clamav-data/" --log=/dev/stdout
 
 # Replace the current virus database with the new one:
 rm -rf "${build}/.clamav-data"

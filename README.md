@@ -14,13 +14,34 @@ It is a [heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for 
 4. In the root directory, add a new file named `Aptfile` (without extension)
 5. Add the following content to this file:
 
-```
+```sh
 # Aptfile
-# Install required apt packages
+# This file lists the required apt packages.  These are installed by the heroku-buildpack-apt buildpack
+# See https://github.com/heroku/heroku-buildpack-apt for details
 
+# Antivirus
 clamav
 clamav-daemon
 clamav-freshclam
 ```
 
-6. (UNSURE) Create a worker that starts clamd
+6. Add the following file to your Rails project: `config/antivirus/freshclam.conf`.
+7. Add the following contents to this file:
+
+```sh
+# config/antivirus/freshclam.conf
+# This config file specifies where the application 'freshclam' looks for virus definition databases
+
+DatabaseMirror database.clamav.net
+```
+
+8. Also add the following file to your Rails project: `config/antivirus/clamd.conf`.
+9. Add the following contents to this file:
+
+```sh
+# config/antivirus/clamd.conf
+
+# TODO: I AM NOT SURE WHAT NEEDS TO BE IN THIS FILE
+```
+
+10. (UNSURE) Create a worker that starts clamd
