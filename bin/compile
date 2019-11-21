@@ -12,7 +12,9 @@ cache="$2" # /app/tmp/cache
 set -e
 mkdir -p "${cache}/clamav-data"
 
-# Override the specified datadir so we retain changes via the cache.
+mkdir -p "${build}/.apt/var/run/clamav/"
+touch "${build}/.apt/var/run/clamav/clamd.sock"
+
 freshclam --config-file="${build}/config/antivirus/freshclam.conf" --datadir="${cache}/clamav-data/" --log=/dev/stdout
 
 # Replace the current virus database with the new one:
