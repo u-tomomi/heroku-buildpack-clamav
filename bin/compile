@@ -13,7 +13,7 @@ set -e
 mkdir -p "${cache}/clamav-data"
 
 # Override the specified datadir so we retain changes via the cache.
-freshclam --config-file="${build}/app/config/antivirus/freshclam.conf" --datadir="${cache}/clamav-data/" --log=/dev/stdout
+freshclam --config-file="${build}/config/antivirus/freshclam.conf" --datadir="${cache}/clamav-data/" --log=/dev/stdout
 
 # Replace the current virus database with the new one:
 rm -rf "${build}/.clamav-data"
