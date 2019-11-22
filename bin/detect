@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-echo "=== ClamAV ==="
+echo "ClamAV"
 exit 0

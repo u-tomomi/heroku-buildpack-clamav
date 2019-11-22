@@ -12,6 +12,10 @@ cache="$2" # /app/tmp/cache
 set -e
 mkdir -p "${cache}/clamav-data"
 
+# Create the config file for the daemon:
+touch "${build}/config/antivirus/clamd.conf"
+echo "LocalSocket /app/config/antivirus/clamd.sock" > "${build}/config/antivirus/clamd.conf"
+
 # Create the socket file for the daemon:
 touch "${build}/config/antivirus/clamd.sock"
 
