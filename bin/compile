@@ -9,8 +9,7 @@
 build="$1" # something like /tmp/build_<uuid>
 cache="$2" # /app/tmp/cache
 
-set -e
-mkdir -p "${cache}/clamav-data"
+set -e # Raise errors if anything goes wrong
 
 # Create the config file for the daemon:
 touch "${build}/config/antivirus/clamd.conf"
@@ -20,6 +19,8 @@ echo "LocalSocket /app/config/antivirus/clamd.sock" > "${build}/config/antivirus
 touch "${build}/config/antivirus/clamd.sock"
 
 # Check for updates in the antivirus database
+# Use the cache directory so that if the database hasn't changed, we can simply use the artifact from the previous deploy
+mkdir -p "${cache}/clamav-data"
 freshclam --config-file="${build}/config/antivirus/freshclam.conf" --datadir="${cache}/clamav-data/" --log=/dev/stdout
 
 # Replace the current virus database with the new one:
