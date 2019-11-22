@@ -11,6 +11,9 @@ cache="$2" # /app/tmp/cache
 
 set -e # Raise errors if anything goes wrong
 
+# Create a symbolic link to clamd folder:
+ln -s /var/lib/clamav /app/.apt/var/lib/clamav
+
 # Create the config file for the daemon:
 touch "${build}/config/antivirus/clamd.conf"
 echo "LocalSocket /app/config/antivirus/clamd.sock" > "${build}/config/antivirus/clamd.conf"
