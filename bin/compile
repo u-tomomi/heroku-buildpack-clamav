@@ -11,9 +11,6 @@ cache="$2" # /app/tmp/cache
 
 set -e # Raise errors if anything goes wrong
 
-# Mount the clamav folder
-echo "mount --bind /var/lib/clamav /app/.apt/var/lib/clamav" >> /etc/fstab
-
 # Create the config file for the daemon:
 touch "${build}/config/antivirus/clamd.conf"
 echo "LocalSocket /app/config/antivirus/clamd.sock" > "${build}/config/antivirus/clamd.conf"
