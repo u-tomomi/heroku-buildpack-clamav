@@ -7,7 +7,7 @@
 # cache - gives you a location to persist build artifacts between deployments
 #
 build="$1" # something like /tmp/build_<uuid>
-cache="$2" # /app/tmp/cache
+cache="/tmp"
 
 set -e # Raise errors if anything goes wrong
 
@@ -26,3 +26,6 @@ freshclam --config-file="${build}/config/antivirus/freshclam.conf" --datadir="${
 # Replace the current virus database with the new one:
 rm -rf "${build}/.clamav-data"
 cp -rp "${cache}/clamav-data" "${build}/.clamav-data"
+
+touch "${build}/config/antivirus/clamd.conf"
+echo "LocalSocket /app/config/antivirus/clamd.sock" > "${build}/config/antivirus/clamd.conf"
