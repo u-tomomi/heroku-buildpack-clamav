@@ -7,7 +7,11 @@
 # cache - gives you a location to persist build artifacts between deployments
 #
 build="$1" # something like /tmp/build_<uuid>
-cache="/tmp"
+cache="$2"
+
+echo "-----------------------------------"
+echo "$build"
+echo "$cache"
 
 set -e # Raise errors if anything goes wrong
 
